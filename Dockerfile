@@ -1,9 +1,8 @@
 FROM debian:9-slim
 
-COPY govc /root/govc
-
-RUN chmod +x /root/govc
+RUN apt-get update && \
+apt-get -y install curl jq && \
+curl -L https://github.com/vmware/govmomi/releases/download/$(curl https://api.github.com/repos/vmware/govmomi/releases/latest -s | jq .name -r)/govc_linux_amd64.gz | gunzip > /root/govc && \
+chmod +x /root/govc
 
 ENTRYPOINT ["/root/govc"]
-
-
