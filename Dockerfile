@@ -1,3 +1,6 @@
-FROM golang:1-stretch 
+FROM debian:stretch 
+
+RUN apt-get update && \
+apt-get install -y golang
 
 ENTRYPOINT ["/go/bin/govc"]
