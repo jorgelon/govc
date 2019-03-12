@@ -1,6 +1,7 @@
-FROM debian:stretch 
+FROM golang:1-stretch 
 
-RUN apt-get update && \
-apt-get install -y golang
+RUN go get -u github.com/vmware/govmomi/govc
 
 ENTRYPOINT ["/go/bin/govc"]
+
+CMD ["version"]
